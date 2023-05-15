@@ -1,0 +1,15 @@
+svg {
+    width: 1000px;
+    height: 600px;
+    /* border:1px solid rgb(10, 9, 9);   */
+    overflow: visible;
+}
+
+select{
+    margin-bottom: 10px;
+}
+
+
+/* #country_selection{
+    width: 100%
+} */

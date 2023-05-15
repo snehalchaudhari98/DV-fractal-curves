@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Koch Snowflake</title>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        svg {
+            border: 1px solid black;
+        }
+
+        .triangle {
+            fill: transparent;
+            stroke: black;
+            stroke-width: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="display:flex; flex-direction:row; align-items:center;">
+        <div>
+
+            <label for="order_slider"> Koch Slider Value:</label>
+            <input type="range" id="order_slider" name="slider" min="0" max="10" value="2">
+            <p>Koch Curve depth value: <span id="slider-value"></span></p>
+        </div>
+
+
+        <div>
+            <label for="Sierpinski_slider"> Sierpinski Slider Value:</label>
+            <input type="range" id="Sierpinski_slider" name="slider" onClick="updateSierpinski()" min="0" max="10"
+                value="7">
+            <p>Sierpinski Value: <span id="Sierpinski_silder-value"></span></p>
+        </div>
+
+        <div>
+            <label for="dragon_slider"> Dragon Curve Slider Value:</label>
+            <input type="range" id="dragon_slider" name="slider" onClick="updateDragonCurve()" min="0" max="10" value="7">
+            <p>Dragon Value: <span id="dragon_slider-value"></span></p>
+        </div>
+
+    </div>
+
+
+    <svg id="canvas" width="500" height="500"></svg>
+</body>
+
+</html>
