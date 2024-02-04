@@ -3,51 +3,119 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Koch Snowflake</title>
-    <base href="https://snehalchaudhari98.github.io/DV-fractal-curves/">
-
+    <title>Fractal Curves</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://snehalchaudhari98.github.io/DV-fractal-curves/js/main.js"></script>
-    <style>
-        svg {
-            border: 1px solid black;
-        }
 
-        .triangle {
-            fill: transparent;
-            stroke: black;
-            stroke-width: 1px;
-        }
-    </style>
+    <!-- <base href="https://snehalchaudhari98.github.io/DV-fractal-curves/"> --> <!-- for github pages -->
+    <!-- <script src="https://snehalchaudhari98.github.io/DV-fractal-curves/js/main.js"></script> -->
+    <!-- for github pages -->
+    <script src="js/main.js"></script> <!-- for local testing -->
+    <link rel="stylesheet" href="css/style.css"> <!-- for local testing -->
+
 </head>
 
 <body>
-    <div style="display:flex; flex-direction:row; align-items:center;">
-        <div>
+    <header>
+        <h1>Fractal Curves Interactive</h1>
+    </header>
 
-            <label for="order_slider"> Koch Slider Value:</label>
-            <input type="range" id="order_slider" name="slider" min="0" max="10" value="2">
-            <p>Koch Curve depth value: <span id="slider-value"></span></p>
+    <div class="content">
+        <div class="left-div">
+
+            <div class="tab">
+                <button class="tablinks active" id="One">Koch Curve</button>
+                <button class="tablinks" id="Two">Sierpinski Curve</button>
+                <button class="tablinks" id="Three">Dragon Curve</button>
+            </div>
+
+            <div id="One" class="tabcontent">
+                <div id="Koch_panel">
+                    <label for="order_slider"> Koch Slider Value:</label>
+                    <input type="range" id="order_slider" name="slider" min="0" max="10" value="2">
+                    <p>Koch Curve depth : <span id="slider-value"></span></p>
+                </div>
+            </div>
+
+            <div id="Two" class="tabcontent">
+                <div id="Sierpinski_panel">
+                    <label for="Sierpinski_slider"> Sierpinski Slider Value:</label>
+                    <input type="range" id="Sierpinski_slider" name="slider" onClick="updateSierpinski()" min="0"
+                        max="10" value="7">
+                    <p>Sierpinski Value: <span id="Sierpinski_silder-value"></span></p>
+                </div>
+            </div>
+
+            <div id="Three" class="tabcontent">
+                <div id="Dragon_panel">
+                    <div>
+                        <label for="dragon_slider"> Dragon Curve Slider Value:</label>
+                        <input type="range" id="dragon_slider" name="slider" onClick="drawDragonCurve()" min="1"
+                            max="10" value="5">
+                        <p>Dragon Order Value: <span id="dragon_order_slider_value"></span></p>
+                    </div>
+
+                    <div>
+                        <label for="dragon_angle">Dragon Angle Value:</label>
+                        <!-- <p>Dragon Angle Value: <span id="dragon_angle_slider_value"></span></p> -->
+                        <input type="number" id="dragon_angle" name="numberInput"  onchange="drawDragonCurve()" value="60" min="0" max="270">
+                       
+                    </div>
+
+                    <div>
+                        <label for="dragon_step">Dragon Step Value:</label>
+                        <input type="number" id="dragon_step" name="numberInput" onchange="drawDragonCurve()" value="3" min="0" max="9">
+                        <!-- <p>Dragon Step Value: <span id="dragon_step_slider_value"></span></p> -->
+                    </div>
+
+                </div>
+            </div>
+
+
+                <!-- <div id="Koch_panel">                
+                        <label for="order_slider"> Koch Slider Value:</label>
+                        <input type="range" id="order_slider" name="slider" min="0" max="10" value="2">
+                        <p>Koch Curve depth : <span id="slider-value"></span></p>
+                    </div>
+                
+                
+                    <div id="Sierpinski_panel">
+                        <label for="Sierpinski_slider"> Sierpinski Slider Value:</label>
+                        <input type="range" id="Sierpinski_slider" name="slider" onClick="updateSierpinski()" min="0" max="10" value="7">
+                        <p>Sierpinski Value: <span id="Sierpinski_silder-value"></span></p>
+                    </div>
+                
+                    <div id="Dragon_panel">
+                        <div>
+                            <label for="dragon_slider"> Dragon Curve Slider Value:</label>
+                            <input type="range" id="dragon_slider" name="slider" onClick="drawDragonCurve()" min="0" max="10" value="5">
+                            <p>Dragon Order Value: <span id="dragon_order_slider_value"></span></p>
+                        </div>
+
+                        <div>
+                            <label for="dragon_angle">Enter a number:</label>
+                            <input type="number" id="dragon_angle" name="numberInput" value="60" min="0" max="270">
+                            <p>Dragon Angle Value: <span id="dragon_angle_slider_value"></span></p>
+                        </div>               
+                        
+                        <div>
+                            <label for="dragon_step">Enter a number:</label>
+                            <input type="number" id="dragon_step" name="numberInput" value="3" min="0" max="9">
+                            <p>Dragon Step Value: <span id="dragon_step_slider_value"></span></p>
+                        </div>
+                        
+                    </div> -->
+
         </div>
 
-
-        <div>
-            <label for="Sierpinski_slider"> Sierpinski Slider Value:</label>
-            <input type="range" id="Sierpinski_slider" name="slider" onClick="updateSierpinski()" min="0" max="10"
-                value="7">
-            <p>Sierpinski Value: <span id="Sierpinski_silder-value"></span></p>
+        <div class="right-div">
+            <svg id="canvas"></svg>
         </div>
-
-        <div>
-            <label for="dragon_slider"> Dragon Curve Slider Value:</label>
-            <input type="range" id="dragon_slider" name="slider" onClick="updateDragonCurve()" min="0" max="10" value="7">
-            <p>Dragon Value: <span id="dragon_slider-value"></span></p>
-        </div>
-
     </div>
 
-
-    <svg id="canvas" width="500" height="500"></svg>
 </body>
+
+<footer>
+    <p><i>Snehal Chaudhari<i></p>
+</footer>
 
 </html>
